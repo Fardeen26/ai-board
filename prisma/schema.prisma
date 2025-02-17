@@ -8,16 +8,64 @@ datasource db {
 }
 
 model User {
-  id           String   @id @default(cuid())
-  email        String   @unique
+  id           String        @id @default(cuid())
+  email        String        @unique
   name         String?
   profileImage String?
-  createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
+  createdAt    DateTime      @default(now())
+  updatedAt    DateTime      @updatedAt
+  postedJob    Jobs[]
+  applications Application[]
 }
 
-enum UserRole {
-  USER
-  ADMIN
-  EMPLOYER
+model Jobs {
+  id           String    @id @default(cuid())
+  title        String
+  description  String
+  location     String
+  salary       String?
+  type         JobType   @default(FULL_TIME)
+  experience   String?
+  requirements String[]
+  status       JobStatus @default(ACTIVE)
+  createdAt    DateTime  @default(now())
+  updatedAt    DateTime  @updatedAt
+  company      String
+
+  postedBy     User          @relation(fields: [userId], references: [id])
+  userId       String
+  applications Application[]
+}
+
+enum JobType {
+  FULL_TIME
+  PART_TIME
+  CONTRACT
+  INTERNSHIP
+}
+
+enum JobStatus {
+  ACTIVE
+  CLOSED
+  DRAFT
+}
+
+model Application {
+  id        String            @id @default(cuid())
+  status    ApplicationStatus @default(PENDING)
+  createdAt DateTime          @default(now())
+  updatedAt DateTime          @updatedAt
+
+  job    Jobs   @relation(fields: [jobId], references: [id])
+  jobId  String
+  user   User   @relation(fields: [userId], references: [id])
+  userId String
+  resume String
+}
+
+enum ApplicationStatus {
+  PENDING
+  REVIEWING
+  ACCEPTED
+  REJECTED
 }
