@@ -4,8 +4,6 @@ import {
     DropdownMenu,
     DropdownMenuContent,
     DropdownMenuItem,
-    DropdownMenuLabel,
-    DropdownMenuSeparator,
     DropdownMenuTrigger,
 } from "@/components/ui/dropdown-menu"
 import {
@@ -27,11 +25,12 @@ export default function Profile() {
                 </Avatar>
             </DropdownMenuTrigger>
             <DropdownMenuContent className="w-fit">
-                <DropdownMenuLabel></DropdownMenuLabel>
-                <DropdownMenuSeparator />
-                <Link href='/history'>
+                <Link href=''>
                     <DropdownMenuItem>
-                        History
+                        Applications
+                    </DropdownMenuItem>
+                    <DropdownMenuItem>
+                        Jobs
                     </DropdownMenuItem>
                 </Link>
             </DropdownMenuContent>

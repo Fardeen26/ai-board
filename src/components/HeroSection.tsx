@@ -1,6 +1,5 @@
 import { Button } from "@/components/ui/button"
 import { Play } from "lucide-react"
-import { InteractiveGridPattern } from "./ui/interactive-grid-pattern"
 import { ShineBorder } from "./ui/shine-border"
 import Image from "next/image"
 import google from '/public/google.svg'
@@ -14,26 +13,27 @@ import Link from "next/link"
 export function HeroSection() {
     return (
         <section className="relative min-h-screen pt-32 pb-16 overflow-hidden bg-black">
-            <InteractiveGridPattern className="absolute inset-0 opacity-30" points={'40'} />
 
             <ShineBorder
                 className="bg-black text-white relative z-10 max-w-6xl mx-auto px-6 border border-white/10 rounded-xl overflow-hidden"
             >
                 <div className="text-center mb-16">
                     <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
-                        Protect Your Privacy, Share What
+                        AI-Powered Job Applications
                         <br />
-                        Matters
+                        Made Simple
                     </h1>
                     <p className="text-gray-400 text-lg mb-8 max-w-2xl mx-auto">
-                        Easily crop out sensitive information on your screen during work calls. Keep your focus on what you want to
-                        share while maintaining full control over your privacy.
+                        Let AI optimize your job applications, tailor your resume, and prepare you for interviews.
+                        Get hired faster with smart, automated tools designed for today&apos;s competitive job market.
                     </p>
                     <div className="flex gap-4 justify-center">
-                        <Button variant="outline" className="gap-2 border-white/10 bg-white/5 hover:bg-white/10">
-                            <Play className="w-4 h-4" />
-                            Explore Jobs
-                        </Button>
+                        <Link href={'/jobs'}>
+                            <Button variant="outline" className="gap-2 border-white/10 bg-white/5 hover:bg-black hover:text-white">
+                                <Play className="w-4 h-4" />
+                                Explore Jobs
+                            </Button>
+                        </Link>
                         <Link href={'/analyze-resume'}>
                             <Button variant="secondary" className="bg-white text-black hover:bg-gray-100">
                                 Analyze Resume

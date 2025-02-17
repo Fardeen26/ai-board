@@ -29,6 +29,8 @@ export default function Page() {
             // const response = await axios.post('/api/analyze-resume', formData);
             const response = await axios.post('/api/analyze-resume', formData);
 
+            console.log('Response:', response.data);
+
             if (!response.data.success) {
                 throw new Error('Failed to analyze resume');
             }
@@ -63,7 +65,7 @@ export default function Page() {
             </form>
 
             {analysis && (
-                <div className="mt-6 p-4 bg-gray-50 rounded-lg">
+                <div className="mt-6 p-4 rounded-lg">
                     <h2 className="text-xl font-semibold mb-4">Analysis Results</h2>
                     <div className="whitespace-pre-wrap">{analysis}</div>
                 </div>
