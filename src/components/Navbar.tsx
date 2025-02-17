@@ -1,11 +1,13 @@
 "use client";
 
-import { signIn } from "next-auth/react"
+import { useSession, signOut, signIn } from 'next-auth/react';
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
 
 export default function Navbar() {
+    const { data: session } = useSession();
+
     const handleAuth = () => {
         signIn('google', { callbackUrl: '/' })
     }
@@ -21,29 +23,21 @@ export default function Navbar() {
                             height={32}
                             className="w-8 h-8"
                         />
-                        <span className="font-medium text-white">Crop Studio</span>
+                        <span className="font-medium text-white">AI Board</span>
                     </Link>
                 </div>
-                <nav className="hidden md:flex items-center gap-8">
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                        Products
-                    </Link>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                        Help
-                    </Link>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                        Community
-                    </Link>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                        Pricing
-                    </Link>
-                    <Link href="#" className="text-sm text-gray-300 hover:text-white transition-colors">
-                        Contact
-                    </Link>
-                </nav>
-                <Button variant="secondary" className="bg-white text-black hover:bg-gray-100" onClick={handleAuth}>
-                    SigniN
-                </Button>
+                {
+                    session ? (
+                        <Button variant="secondary" className="bg-white text-black hover:bg-gray-100" onClick={handleAuth}>
+                            Signin
+                        </Button>
+                    ) : (
+                        <Button onClick={() => signOut()} variant="secondary" className="bg-white text-black hover:bg-gray-100">
+                            Logout
+                        </Button>
+                    )
+                }
+
             </div>
         </header>
     );
