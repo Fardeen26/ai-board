@@ -4,6 +4,7 @@ import { useSession, signOut, signIn } from 'next-auth/react';
 import { Button } from "./ui/button";
 import Link from "next/link";
 import Image from "next/image";
+import Profile from './Profile';
 
 export default function Navbar() {
     const { data: session } = useSession();
@@ -28,16 +29,18 @@ export default function Navbar() {
                 </div>
                 {
                     session ? (
+                        <div className='space-x-4 flex items-center'>
+                            <Button onClick={() => signOut()} variant="secondary" className="bg-white text-black hover:bg-gray-100">
+                                Logout
+                            </Button>
+                            <Profile />
+                        </div>
+                    ) : (
                         <Button variant="secondary" className="bg-white text-black hover:bg-gray-100" onClick={handleAuth}>
                             Signin
                         </Button>
-                    ) : (
-                        <Button onClick={() => signOut()} variant="secondary" className="bg-white text-black hover:bg-gray-100">
-                            Logout
-                        </Button>
                     )
                 }
-
             </div>
         </header>
     );
