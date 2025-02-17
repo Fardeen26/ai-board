@@ -9,6 +9,7 @@ import atlassian from '/public/atlassian.svg'
 import framer from '/public/framer.svg'
 import medium from '/public/medium.svg'
 import coinbase from '/public/coinbase.svg'
+import Link from "next/link"
 
 export function HeroSection() {
     return (
@@ -33,9 +34,11 @@ export function HeroSection() {
                             <Play className="w-4 h-4" />
                             Explore Jobs
                         </Button>
-                        <Button variant="secondary" className="bg-white text-black hover:bg-gray-100">
-                            Get Started
-                        </Button>
+                        <Link href={'/analyze-resume'}>
+                            <Button variant="secondary" className="bg-white text-black hover:bg-gray-100">
+                                Analyze Resume
+                            </Button>
+                        </Link>
                     </div>
                 </div>
             </ShineBorder>
